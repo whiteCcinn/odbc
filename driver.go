@@ -10,7 +10,7 @@ import "C"
 import (
 	"database/sql"
 
-	"github.com/alexbrainman/odbc/api"
+	"github.com/whiteCcinn/odbc/api"
 )
 
 var drv Driver
