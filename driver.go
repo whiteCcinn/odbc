@@ -6,6 +6,7 @@
 //
 package odbc
 
+import "C"
 import (
 	"database/sql"
 
@@ -25,7 +26,8 @@ func initDriver() error {
 	//Allocate environment handle
 	var out api.SQLHANDLE
 	in := api.SQL_NULL_HANDLE
-	ret := api.SQLAllocHandle(api.SQL_HANDLE_ENV, in, &out)
+	r:= C.SQLAllocHandle(C.SQLSMALLINT(api.SQL_HANDLE_ENV), C.SQLHANDLE(in), (*C.SQLHANDLE)(&out))
+	ret := api.SQLRETURN(r)
 	if IsError(ret) {
 		return NewError("SQLAllocHandle", api.SQLHENV(in))
 	}
@@ -66,7 +68,7 @@ func initDriver() error {
 func (d *Driver) Close() error {
 	// TODO(brainman): who will call (*Driver).Close (to dispose all opened handles)?
 	h := d.h
-	d.h = api.SQL_NULL_HENV
+	d.h = C.SQLHENV(api.SQL_NULL_HENV)
 	return releaseHandle(h)
 }
 
