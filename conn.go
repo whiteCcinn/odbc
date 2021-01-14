@@ -9,7 +9,7 @@ import (
 	"strings"
 	"unsafe"
 
-	"github.com/whiteCcinn/odbc/api"
+	"github.com/alexbrainman/odbc/api"
 )
 
 type Conn struct {

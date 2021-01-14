@@ -8,7 +8,7 @@ import (
 	"database/sql/driver"
 	"io"
 
-	"github.com/whiteCcinn/odbc/api"
+	"github.com/alexbrainman/odbc/api"
 )
 
 type Rows struct {
