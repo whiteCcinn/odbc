@@ -24,7 +24,7 @@ func initDriver() error {
 
 	//Allocate environment handle
 	var out api.SQLHANDLE
-	in := api.SQLHANDLE(api.SQL_NULL_HANDLE)
+	in := api.SQL_NULL_HANDLE
 	ret := api.SQLAllocHandle(api.SQL_HANDLE_ENV, in, &out)
 	if IsError(ret) {
 		return NewError("SQLAllocHandle", api.SQLHENV(in))
@@ -66,7 +66,7 @@ func initDriver() error {
 func (d *Driver) Close() error {
 	// TODO(brainman): who will call (*Driver).Close (to dispose all opened handles)?
 	h := d.h
-	d.h = api.SQLHENV(api.SQL_NULL_HENV)
+	d.h = api.SQL_NULL_HENV
 	return releaseHandle(h)
 }
 
